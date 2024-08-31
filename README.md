@@ -7,7 +7,7 @@ This project implements a distributed K-Means clustering algorithm using the Map
 ### `master.py`
 The master node coordinates the MapReduce process. It initializes the centroids, assigns tasks to mappers, and collects results from reducers.
 
-#### Methods:
+Methods:
   - `start()`: Starts the MapReduce process.
   - `Map()`: Sends map requests to mappers.
   - `Reduce()`: Sends reduce requests to reducers.
@@ -15,15 +15,15 @@ The master node coordinates the MapReduce process. It initializes the centroids,
 ### `mapper.py`
 The mapper node processes a subset of data points, calculates the nearest centroid for each point, and partitions the results.
 
-#### Methods:
+Methods:
   - `Map()`: Processes data points and calculates nearest centroids.
   - `partition()`: Partitions the output into smaller files.
   - `GetEntries()`: Retrieves partitioned entries for reducers.
 
 ### `reducer.py`
-The reducer node collects and processes partitioned data from mappers, updates centroids, and writes the results.
+The reducer node collects and processes partitioned data from mappers, updates centroids, and writes the results
 
-#### Methods:
+Methods:
   - `Reduce()`: Processes partitioned data and updates centroids.
   - `shuffle_and_sort()`: Collects and sorts data from mappers.
   - `reduce()`: Calculates updated centroids.
