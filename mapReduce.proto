@@ -1,0 +1,44 @@
+// this is the protobuf file for the service MapReduce we are going to implement for K-MeansClustering
+syntax = "proto3";
+
+package mapreduce;
+
+// for master-mapper and master-reducer communication
+service MapReduce {
+    rpc Map(MapRequest) returns (MapResponse) {}
+    rpc Reduce(ReduceRequest) returns (ReduceResponse) {}
+    rpc GetEntries(GetEntriesRequest) returns (GetEntriesResponse) {}
+}
+
+message MapRequest {
+    int32 id = 1;
+    int32 start = 2;
+    int32 end = 3;
+    // List of Centroids
+    string centroids = 4;
+    int32 r = 5;
+}
+
+message MapResponse {
+    bool success = 1;
+}
+
+message ReduceRequest {
+    int32 id = 1;
+    string mapper_nodes = 2;
+}
+
+message ReduceResponse {
+    bool success = 1;
+    string centroids = 2;
+}
+
+message GetEntriesRequest {
+    int32 id = 1;
+}
+
+message GetEntriesResponse {
+    string entries = 1;
+}
+
+// python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. mapReduce.proto
